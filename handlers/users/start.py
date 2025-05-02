@@ -20,18 +20,18 @@ from utils.misc import subscription
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 
-@dp.message_handler(commands='ruuz')
+@dp.message_handler(commands='enuz')
 async def bot_start(message: types.Message):
     a = await db.update_users_from_lang(from_lang='ru', to_lang='uz', tg_id=message.from_user.id)
     await message.answer(
-        'Hozir "Rus - O`zbek" tarjima holatidasiz. "O`zbek - Rus" holatiga o`tish uchun /uzru buyrug`ini tering.')
+        'Hozir "English - O`zbek" tarjima holatidasiz. "O`zbek - English" holatiga o`tish uchun /uzen buyrug`ini tering.')
 
 
-@dp.message_handler(commands='uzru')
+@dp.message_handler(commands='uzen')
 async def bot_start(message: types.Message):
     a = await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=message.from_user.id)
     await message.answer(
-        'Hozir "O`zbek - Rus" tarjima holatidasiz. "Rus - O`zbek" holatiga o`tish uchun /ruuz buyrug`ini bering.')
+        'Hozir "O`zbek - English" tarjima holatidasiz. "English - O`zbek" holatiga o`tish uchun /enuz buyrug`ini bering.')
 
 
 @dp.message_handler(CommandStart())
@@ -58,7 +58,7 @@ async def bot_start(message: types.Message):
                                            channel=f'{channel}')
     if status:
         await message.answer(
-            'Hozir "O`zbek - Rus" holatidasiz. "Rus - O`zbek" holatiga o`tish uchun /ruuz buyrug`ini bering.')
+            'Hozir "O`zbek - English" holatidasiz. "English - O`zbek" holatiga o`tish uchun /enuz buyrug`ini bering.')
         await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=message.from_user.id)
     else:
         button = types.InlineKeyboardMarkup(row_width=1, )
@@ -103,7 +103,7 @@ async def checker(call: types.CallbackQuery, state: FSMContext):
                                            channel=f'{channel}')
     if status:
         await call.message.edit_text(
-            'Hozir "O`zbek - Rus" tarjima holatidasiz. "Rus - O`zbek" holatiga o`tish uchun /ruuz buyrug`ini bering.')
+            'Hozir "O`zbek - English" tarjima holatidasiz. "English - O`zbek" holatiga o`tish uchun /enuz buyrug`ini bering.')
         await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=call.from_user.id)
 
     else:
