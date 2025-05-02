@@ -77,7 +77,7 @@ class Database:
 
     async def add_json_file_user(self, full_name, username, telegram_id,is_active=True):
         sql = "INSERT INTO users (full_name, username, telegram_id,is_active) VALUES($1, $2, $3,$4) returning *"
-        return await self.execute(sql, full_name, username, telegram_id,is_active, fetchrow=True)
+        return await self.execute(sql, full_name, username, telegram_id, is_active, fetchrow=True)
 
     async def select_all_users(self):
         sql = "SELECT * FROM Users"

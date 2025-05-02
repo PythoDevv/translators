@@ -18,6 +18,22 @@ from loader import dp, db, bot
 from states.allStates import AllState
 from utils.misc import subscription
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+@dp.message_handler(Command('read_file'))
+async def json_reader(message: types.Message):
+    f = open('users.json', 'r')
+    data = json.loads(f.read())
+    for user in data:
+        try:
+            user = await db.add_json_file_user(
+                telegram_id=user['phone'],
+                username=user['username'],
+                full_name=user['full_name'],
+                #phone=user['phone'],
+                #score=user['score']
+            )
+        except Exception as e:
+            print(e)
+    f.close()
 
 
 @dp.message_handler(commands='ruuz')
