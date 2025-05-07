@@ -75,7 +75,7 @@ async def bot_start(message: types.Message):
     if status:
         await message.answer(
             'Hozir "O`zbek - Arab" holatidasiz. "Arab - O`zbek" holatiga o`tish uchun /aruz buyrug`ini bering.')
-        await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=message.from_user.id)
+        await db.update_users_from_lang(from_lang='uz', to_lang='ar', tg_id=message.from_user.id)
     else:
         button = types.InlineKeyboardMarkup(row_width=1, )
         counter = 0
@@ -99,7 +99,7 @@ async def checker(call: types.CallbackQuery, state: FSMContext):
             full_name=call.message.from_user.full_name,
             type=1
         )
-        await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=call.from_user.id)
+        await db.update_users_from_lang(from_lang='uz', to_lang='ar', tg_id=call.from_user.id)
 
     except Exception as err:
         pass
@@ -120,7 +120,7 @@ async def checker(call: types.CallbackQuery, state: FSMContext):
     if status:
         await call.message.edit_text(
             'Hozir "O`zbek - Arab" tarjima holatidasiz. "Arab - O`zbek" holatiga o`tish uchun /aruz buyrug`ini bering.')
-        await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=call.from_user.id)
+        await db.update_users_from_lang(from_lang='uz', to_lang='ar', tg_id=call.from_user.id)
 
     else:
         button = types.InlineKeyboardMarkup(row_width=1, )
