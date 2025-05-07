@@ -22,14 +22,14 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 @dp.message_handler(commands='enuz')
 async def bot_start(message: types.Message):
-    a = await db.update_users_from_lang(from_lang='ru', to_lang='uz', tg_id=message.from_user.id)
+    a = await db.update_users_from_lang(from_lang='en', to_lang='uz', tg_id=message.from_user.id)
     await message.answer(
         'Hozir "English - O`zbek" tarjima holatidasiz. "O`zbek - English" holatiga o`tish uchun /uzen buyrug`ini tering.')
 
 
 @dp.message_handler(commands='uzen')
 async def bot_start(message: types.Message):
-    a = await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=message.from_user.id)
+    a = await db.update_users_from_lang(from_lang='uz', to_lang='en', tg_id=message.from_user.id)
     await message.answer(
         'Hozir "O`zbek - English" tarjima holatidasiz. "English - O`zbek" holatiga o`tish uchun /enuz buyrug`ini bering.')
 
@@ -59,7 +59,7 @@ async def bot_start(message: types.Message):
     if status:
         await message.answer(
             'Hozir "O`zbek - English" holatidasiz. "English - O`zbek" holatiga o`tish uchun /enuz buyrug`ini bering.')
-        await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=message.from_user.id)
+        await db.update_users_from_lang(from_lang='uz', to_lang='en', tg_id=message.from_user.id)
     else:
         button = types.InlineKeyboardMarkup(row_width=1, )
         counter = 0
@@ -83,7 +83,7 @@ async def checker(call: types.CallbackQuery, state: FSMContext):
             full_name=call.message.from_user.full_name,
             type=1
         )
-        await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=call.from_user.id)
+        await db.update_users_from_lang(from_lang='uz', to_lang='en', tg_id=call.from_user.id)
 
     except Exception as err:
         pass
@@ -104,7 +104,7 @@ async def checker(call: types.CallbackQuery, state: FSMContext):
     if status:
         await call.message.edit_text(
             'Hozir "O`zbek - English" tarjima holatidasiz. "English - O`zbek" holatiga o`tish uchun /enuz buyrug`ini bering.')
-        await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=call.from_user.id)
+        await db.update_users_from_lang(from_lang='uz', to_lang='en', tg_id=call.from_user.id)
 
     else:
         button = types.InlineKeyboardMarkup(row_width=1, )
