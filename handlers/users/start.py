@@ -36,18 +36,18 @@ async def json_reader(message: types.Message):
     f.close()
 
 
-@dp.message_handler(commands='ruuz')
+@dp.message_handler(commands='aruz')
 async def bot_start(message: types.Message):
-    a = await db.update_users_from_lang(from_lang='ru', to_lang='uz', tg_id=message.from_user.id)
+    a = await db.update_users_from_lang(from_lang='ar', to_lang='uz', tg_id=message.from_user.id)
     await message.answer(
-        'Hozir "Rus - O`zbek" tarjima holatidasiz. "O`zbek - Rus" holatiga o`tish uchun /uzru buyrug`ini tering.')
+        'Hozir "Arab - O`zbek" tarjima holatidasiz. "O`zbek - Arab" holatiga o`tish uchun /uzar buyrug`ini tering.')
 
 
-@dp.message_handler(commands='uzru')
+@dp.message_handler(commands='uzar')
 async def bot_start(message: types.Message):
-    a = await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=message.from_user.id)
+    a = await db.update_users_from_lang(from_lang='uz', to_lang='ar', tg_id=message.from_user.id)
     await message.answer(
-        'Hozir "O`zbek - Rus" tarjima holatidasiz. "Rus - O`zbek" holatiga o`tish uchun /ruuz buyrug`ini bering.')
+        'Hozir "O`zbek - Arab" tarjima holatidasiz. "Arab - O`zbek" holatiga o`tish uchun /aruz buyrug`ini bering.')
 
 
 @dp.message_handler(CommandStart())
@@ -74,7 +74,7 @@ async def bot_start(message: types.Message):
                                            channel=f'{channel}')
     if status:
         await message.answer(
-            'Hozir "O`zbek - Rus" holatidasiz. "Rus - O`zbek" holatiga o`tish uchun /ruuz buyrug`ini bering.')
+            'Hozir "O`zbek - Arab" holatidasiz. "Arab - O`zbek" holatiga o`tish uchun /aruz buyrug`ini bering.')
         await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=message.from_user.id)
     else:
         button = types.InlineKeyboardMarkup(row_width=1, )
@@ -119,7 +119,7 @@ async def checker(call: types.CallbackQuery, state: FSMContext):
                                            channel=f'{channel}')
     if status:
         await call.message.edit_text(
-            'Hozir "O`zbek - Rus" tarjima holatidasiz. "Rus - O`zbek" holatiga o`tish uchun /ruuz buyrug`ini bering.')
+            'Hozir "O`zbek - Arab" tarjima holatidasiz. "Arab - O`zbek" holatiga o`tish uchun /aruz buyrug`ini bering.')
         await db.update_users_from_lang(from_lang='uz', to_lang='ru', tg_id=call.from_user.id)
 
     else:
